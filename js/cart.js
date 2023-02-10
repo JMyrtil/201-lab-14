@@ -30,23 +30,33 @@ function clearCart() {
 function showCart() {
   // DONE: Find the table body
   let tbody = document.querySelector('tbody');
+  let storageCart = JSON.parse(localStorage.getItem('cartItemsArrayLocalStorage'));
   // DONE: Iterate over the items in the cart
-  for (let i = 0; i < state.cart.length; i++) {
+  for (let i = 0; i < storageCart; i++) {
     let tr = document.createElement('tr');
     let tdName = document.createElement('td');
     let tdQuantity = document.createElement('td');
+
+    //Delete link
     let tdDelete = document.createElement('td');
-    tdDelete.textContent = 'Delete';
-    tdName.textContent = state.cart[i].product;
-    tdQuantity.textContent = state.cart[i].quantity;
+    let linkDelete = document.createElement('a');
+    let l = document.createTextNode('Delete');
+    linkDelete.appendChild(l);
+    link.title = 'Delete';
+    tdDelete.appendChild(linkDelete);
+
+
+    tdName.textContent = storageCart[i].product;
+    tdQuantity.textContent = storageCar[i].quantity;
     tr.appendChild(tdName);
     tr.appendChild(tdQuantity);
+    tr.appendChild(tdDelete);
     tbody.appendChild(tr);
   }
   // DONE: Create a TR
-  // TODO: Create a TD for the delete link, quantity,  and the item
+  // DONE: Create a TD for the delete link, quantity,  and the item
 
-  // TODO: Add the TR to the TBODY and each of the TD's to the TR
+  // DONE: Add the TR to the TBODY and each of the TD's to the TR
 
 }
 

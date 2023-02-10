@@ -42,7 +42,7 @@ function addSelectedItemToCart() {
   // DONE: get the quantity
   let quantitySelected = document.getElementById('quantity').value;
   // DONE: using those, add one item to the Cart
-state.cart.addItem(itemSelected, quantitySelected);
+  state.cart.addItem(itemSelected, quantitySelected);
 }
 
 // DONE: As you add items into the cart, show them (item & quantity) in the cart preview div
