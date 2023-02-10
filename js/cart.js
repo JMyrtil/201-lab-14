@@ -65,11 +65,20 @@ function showCart() {
 }
 
 function removeItemFromCart(event) {
-
+  let tdName = event.target.parentNode.parentNode.firstChild.textContent;
+  console.log(tdName);
+  //check which cartItem in state.cart.items matches this tr
+  for(let i = 0; i<state.cart.items.length; i++){
+    if(state.cart.items[i].product == tdName){
+      state.cart.removeItem(i);
+    }
+  }
+  
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
   // TODO: Save the cart back to local storage
+  state.cart.saveToLocalStorage();
   // TODO: Re-draw the cart table
-
+  renderCart();
 }
 
 // This will initialize the page and draw the cart on screen
