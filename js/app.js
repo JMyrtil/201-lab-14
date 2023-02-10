@@ -35,7 +35,7 @@ Cart.prototype.updateCounter = function() {
   let counter = 0;
   console.log(state.cart.items.length);
   for(let i=0; i<state.cart.items.length; i++){
-    counter+=state.cart[i].quantity;
+    counter+=state.cart.items[i].quantity;
     console.log('in cart.prototype.updateCounter for loop')
   }
   itemCount.textContent = counter;
