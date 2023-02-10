@@ -3,7 +3,7 @@
 // State object keeps track of the application state (all available products and current state of the user's cart)
 const state = {
   allProducts: [],
-  cart: null,
+  cart: null, //= new Cart(cartItems) ---cartItems is from local storage
 };
 
 // Cart constructor.
@@ -15,12 +15,12 @@ const Cart = function(items) {
 Cart.prototype.addItem = function(product, quantity) {
   // DONE: Fill in this instance method to create a new CartItem and add it to this.items
   let i = new CartItem(product, quantity);
-  this.cart.push(i);
+  this.items.push(i);
 };
 
 Cart.prototype.saveToLocalStorage = function() {
   // DONE: Fill in this instance method to save the contents of the cart to localStorage
-  localStorage.setItem('cartItemsArrayLocalStorage', JSON.stringify(this.items));
+  localStorage.setItem('cart', JSON.stringify(this.items));
 };
 
 Cart.prototype.removeItem = function(index) {
@@ -33,8 +33,10 @@ Cart.prototype.updateCounter = function() {
   // TODO: Update the cart count in the header nav with the number of items in the Cart
   let itemCount = document.getElementById('itemCount');
   let counter = 0;
-  for(let i=0; i<state.allProducts.length; i++){
-    counter+=state.allProducts[i].quantity;
+  console.log(state.cart.items.length);
+  for(let i=0; i<state.cart.items.length; i++){
+    counter+=state.cart[i].quantity;
+    console.log('in cart.prototype.updateCounter for loop')
   }
   itemCount.textContent = counter;
 }

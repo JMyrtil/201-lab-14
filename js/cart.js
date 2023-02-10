@@ -8,6 +8,7 @@ table.addEventListener('click', removeItemFromCart);
 function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   state.cart = new Cart(cartItems);
+  console.log(state.cart.items);
 }
 
 // Make magic happen --- re-pull the Cart, clear out the screen and re-draw it
@@ -26,28 +27,31 @@ function clearCart() {
   // }
 }
 
-// TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
+// DONE: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
   // DONE: Find the table body
+  console.log('inside showCart')
   let tbody = document.querySelector('tbody');
-  let storageCart = JSON.parse(localStorage.getItem('cartItemsArrayLocalStorage'));
   // DONE: Iterate over the items in the cart
-  for (let i = 0; i < storageCart; i++) {
+  
+  for (let i in state.cart.items) {
     let tr = document.createElement('tr');
     let tdName = document.createElement('td');
     let tdQuantity = document.createElement('td');
-
+    
+    console.log('inside for loop');
     //Delete link
     let tdDelete = document.createElement('td');
     let linkDelete = document.createElement('a');
     let l = document.createTextNode('Delete');
     linkDelete.appendChild(l);
-    link.title = 'Delete';
+    linkDelete.title = 'Delete';
     tdDelete.appendChild(linkDelete);
 
 
-    tdName.textContent = storageCart[i].product;
-    tdQuantity.textContent = storageCar[i].quantity;
+    tdName.textContent = state.cart.items[i].product;
+    console.log(state.cart.items[i].product);
+    tdQuantity.textContent = state.cart.items[i].quantity;
     tr.appendChild(tdName);
     tr.appendChild(tdQuantity);
     tr.appendChild(tdDelete);
